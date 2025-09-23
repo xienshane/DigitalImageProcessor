@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DigitalImageProcessor
 {
@@ -13,6 +14,10 @@ namespace DigitalImageProcessor
     {
         Bitmap originalImage;
         Bitmap processedImage;
+        Bitmap imageA;     
+        Bitmap imageB;            
+        Bitmap subtractionResult;  
+
 
         public Form1()
         {
@@ -28,6 +33,19 @@ namespace DigitalImageProcessor
             colorInversionToolStripMenuItem.Click += ColorInversionToolStripMenuItem_Click;
             sepiaToolStripMenuItem.Click += SepiaToolStripMenuItem_Click;
             histogramToolStripMenuItem.Click += HistogramToolStripMenuItem_Click;
+            imageSubtractionToolStripMenuItem.Click += ImageSubtractionToolStripMenuItem_Click;
+            btnLoadImage.Click += btnLoadImage_Click;
+            btnLoadBackground.Click += btnLoadBackground_Click;
+            btnSubtract.Click += btnSubtract_Click;
+
+            btnLoadImage.Visible = false;
+            btnLoadBackground.Visible = false;
+            btnSubtract.Visible = false;
+
+
+            //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;  
+            //pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage; 
+            //pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;      
         }
 
         // Add Image
@@ -172,6 +190,84 @@ namespace DigitalImageProcessor
 
             processedImage = histImage;
             pictureBox2.Image = processedImage;
+        }
+
+        private void ImageSubtractionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnLoadImage.Visible = true;
+            btnLoadBackground.Visible = true;
+            btnSubtract.Visible = true;
+        }
+  
+
+     // Load Foreground Image (Image B)
+        private void btnLoadImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp",
+                Title = "Load Foreground Image"
+            };
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                imageB = new Bitmap(ofd.FileName);
+                pictureBox1.Image = imageB;
+            }
+        }
+
+        // Load Background Image (Image A)
+        private void btnLoadBackground_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp",
+                Title = "Load Background Image"
+            };
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                imageA = new Bitmap(ofd.FileName);
+                pictureBox2.Image = imageA;
+            }
+        }
+
+        // Perform Subtraction
+        private void btnSubtract_Click(object sender, EventArgs e)
+        {
+            if (imageA == null || imageB == null)
+            {
+                MessageBox.Show("Please load both Foreground and Background images first!");
+                return;
+            }
+
+            int width = Math.Min(imageA.Width, imageB.Width);
+            int height = Math.Min(imageA.Height, imageB.Height);
+            subtractionResult = new Bitmap(width, height);
+
+
+            Color greenColor = Color.FromArgb(0, 0, 255);
+            int greygreen = (greenColor.R + greenColor.G + greenColor.B) / 3;
+            int threshold = 5;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Color pixelB = imageB.GetPixel(x, y);
+                    Color pixelA = imageA.GetPixel(x, y);
+
+                   int grey = (pixelB.R + pixelB.G + pixelB.B) / 3;
+                   int diff = Math.Abs(grey - greygreen);
+
+                    if (diff > threshold)
+                        subtractionResult.SetPixel(x, y, pixelB);
+                    else
+                        subtractionResult.SetPixel(x, y, pixelA);
+                }
+            }
+
+            pictureBox3.Image = subtractionResult;
+
+            MessageBox.Show("Image Subtraction complete! Result shown in PictureBox3.");
         }
     }
 }
