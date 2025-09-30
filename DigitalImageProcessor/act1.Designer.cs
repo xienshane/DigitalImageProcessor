@@ -1,4 +1,4 @@
-﻿namespace ImageProcessingActivity {
+﻿namespace DigitalImageProcessor {
     partial class part1 {
         /// <summary> 
         /// Required designer variable.

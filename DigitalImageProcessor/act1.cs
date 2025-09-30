@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace ImageProcessingActivity {
+namespace DigitalImageProcessor {
     public partial class part1 : UserControl {
 
         

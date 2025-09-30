@@ -1,4 +1,4 @@
-﻿namespace ImageProcessingActivity
+﻿namespace DigitalImageProcessor
 {
     partial class Form1
     {
@@ -78,7 +78,7 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
-            Text = "Image Processing App";
+            Text = "Digital Image Processor App";
             Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

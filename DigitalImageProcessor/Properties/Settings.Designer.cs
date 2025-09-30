@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ImageProcessingActivity.Properties {
+namespace DigitalImageProcessor.Properties {
 
 
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

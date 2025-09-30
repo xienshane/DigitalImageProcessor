@@ -9,7 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using WebCamLib;
 
-namespace ImageProcessingActivity {
+namespace DigitalImageProcessor {
     public partial class act2 : UserControl {
         public act2() {
             InitializeComponent();

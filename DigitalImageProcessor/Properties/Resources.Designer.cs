@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ImageProcessingActivity.Properties {
+namespace DigitalImageProcessor.Properties {
 
 
     /// <summary>
@@ -38,7 +38,7 @@ namespace ImageProcessingActivity.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if ( ( resourceMan == null ) ) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ImageProcessingActivity.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DigitalImageProcessor.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
