@@ -1,5 +1,5 @@
 ﻿namespace ImageProcessingActivity {
-    partial class part2 {
+    partial class act2 {
         /// <summary> 
         /// Required designer variable.
         /// </summary>

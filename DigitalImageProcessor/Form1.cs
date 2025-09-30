@@ -15,7 +15,7 @@ namespace ImageProcessingActivity
     {
 
         part1 part1 = null;
-        part2 part2 = null;
+        act2 part2 = null;
 
         public Form1()
         {
@@ -51,7 +51,7 @@ namespace ImageProcessingActivity
         {
             if (part2 == null)
             {
-                part2 = new part2();
+                part2 = new act2();
             }
             changePanel(part2);
         }

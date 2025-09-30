@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using WebCamLib;
 
 namespace ImageProcessingActivity {
-    public partial class part2 : UserControl {
-        public part2() {
+    public partial class act2 : UserControl {
+        public act2() {
             InitializeComponent();
         }
 
